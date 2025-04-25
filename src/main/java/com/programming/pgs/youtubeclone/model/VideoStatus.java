@@ -1,4 +1,4 @@
-package com.programming.techie.youtubeclone.model;
+package com.programming.pgs.youtubeclone.model;
 
 public enum VideoStatus {
     PUBLIC, PRIVATE, UNLISTED

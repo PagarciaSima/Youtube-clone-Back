@@ -1,4 +1,4 @@
-package com.programming.techie.youtubeclone.config;
+package com.programming.pgs.youtubeclone.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

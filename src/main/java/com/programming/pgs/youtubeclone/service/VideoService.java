@@ -1,12 +1,12 @@
-package com.programming.techie.youtubeclone.service;
+package com.programming.pgs.youtubeclone.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.programming.techie.youtubeclone.dto.UploadVideoResponse;
-import com.programming.techie.youtubeclone.dto.VideoDto;
-import com.programming.techie.youtubeclone.model.Video;
-import com.programming.techie.youtubeclone.repository.VideoRepository;
+import com.programming.pgs.youtubeclone.dto.UploadVideoResponse;
+import com.programming.pgs.youtubeclone.dto.VideoDto;
+import com.programming.pgs.youtubeclone.model.Video;
+import com.programming.pgs.youtubeclone.repository.VideoRepository;
 
 import lombok.RequiredArgsConstructor;
 

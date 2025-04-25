@@ -1,4 +1,4 @@
-package com.programming.techie.youtubeclone.dto;
+package com.programming.pgs.youtubeclone.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.programming.techie.youtubeclone.controller;
+package com.programming.pgs.youtubeclone.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.programming.techie.youtubeclone.dto.UploadVideoResponse;
-import com.programming.techie.youtubeclone.dto.VideoDto;
-import com.programming.techie.youtubeclone.service.VideoService;
+import com.programming.pgs.youtubeclone.dto.UploadVideoResponse;
+import com.programming.pgs.youtubeclone.dto.VideoDto;
+import com.programming.pgs.youtubeclone.service.VideoService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,8 +1,8 @@
-package com.programming.techie.youtubeclone.dto;
+package com.programming.pgs.youtubeclone.dto;
 
 import java.util.Set;
 
-import com.programming.techie.youtubeclone.model.VideoStatus;
+import com.programming.pgs.youtubeclone.model.VideoStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
