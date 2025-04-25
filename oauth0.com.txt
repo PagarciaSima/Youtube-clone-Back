@@ -1,0 +1,9 @@
+1 - Create App (youtube-clone-angular) as spa
+2 - Choose angular
+3 - Set http://localhost:4200 as callback, logout url & web origins
+
+4 - Go to API / Create  as Youtube-clone-springboot-api-client with id http:localhost:8080
+5 - ng add angular-auth-oidc-client@12.0.3 , select auth0 and tenantid = domain from auth0.com
+6 - Springboot configura automáticamente un endpoint para la info del proveedor de identidad (dominio del cliente springboot)
+https://dev-u0zrcpwkth27whmj.us.auth0.com/.well-known/openid-configuration
+7 - In auth0.com go to app / Apis / test tab to find the auth endpoint and body
