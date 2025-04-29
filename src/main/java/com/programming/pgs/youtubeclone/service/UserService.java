@@ -32,7 +32,7 @@ public class UserService {
 
         LOGGER.debug("Fetching user with sub: {}", sub);
         
-        return userRepository.findBySub(sub)
+        return this.userRepository.findBySub(sub)
                 .orElseThrow(() -> {
                     LOGGER.error("Cannot find user with sub - {}", sub);
                     return new IllegalArgumentException("Cannot find user with sub - " + sub);
@@ -48,7 +48,7 @@ public class UserService {
         User currentUser = getCurrentUser();
         LOGGER.info("Adding video with ID {} to liked videos of user {}", videoId, currentUser.getId());
         currentUser.addToLikeVideos(videoId);
-        userRepository.save(currentUser);
+        this.userRepository.save(currentUser);
     }
 
     /**
@@ -84,7 +84,7 @@ public class UserService {
         User currentUser = getCurrentUser();
         LOGGER.info("Removing video with ID {} from liked videos of user {}", videoId, currentUser.getId());
         currentUser.removeFromLikedVideos(videoId);
-        userRepository.save(currentUser);
+        this.userRepository.save(currentUser);
     }
 
     /**
@@ -96,7 +96,7 @@ public class UserService {
         User currentUser = getCurrentUser();
         LOGGER.info("Removing video with ID {} from disliked videos of user {}", videoId, currentUser.getId());
         currentUser.removeFromDislikedVideos(videoId);
-        userRepository.save(currentUser);
+        this.userRepository.save(currentUser);
     }
 
     /**
@@ -108,7 +108,7 @@ public class UserService {
         User currentUser = getCurrentUser();
         LOGGER.info("Adding video with ID {} to disliked videos of user {}", videoId, currentUser.getId());
         currentUser.addToDislikedVideos(videoId);
-        userRepository.save(currentUser);
+        this.userRepository.save(currentUser);
     }
 
     /**
@@ -120,7 +120,7 @@ public class UserService {
         User currentUser = getCurrentUser();
         LOGGER.info("Adding video with ID {} to history of user {}", videoId, currentUser.getId());
         currentUser.addToVideoHistory(videoId);
-        userRepository.save(currentUser);
+        this.userRepository.save(currentUser);
     }
 
     /**
@@ -136,8 +136,8 @@ public class UserService {
         User user = getUserById(userId);
         user.addToSubscribers(currentUser.getId());
 
-        userRepository.save(currentUser);
-        userRepository.save(user);
+        this.userRepository.save(currentUser);
+        this.userRepository.save(user);
     }
 
     /**
@@ -153,8 +153,8 @@ public class UserService {
         User user = getUserById(userId);
         user.removeFromSubscribers(currentUser.getId());
 
-        userRepository.save(currentUser);
-        userRepository.save(user);
+        this.userRepository.save(currentUser);
+        this.userRepository.save(user);
     }
 
     /**
@@ -166,7 +166,7 @@ public class UserService {
      */
     private User getUserById(String userId) {
         LOGGER.debug("Fetching user with ID: {}", userId);
-        return userRepository.findById(userId)
+        return this.userRepository.findById(userId)
                 .orElseThrow(() -> {
                     LOGGER.error("Cannot find user with userId {}", userId);
                     return new IllegalArgumentException("Cannot find user with userId " + userId);
