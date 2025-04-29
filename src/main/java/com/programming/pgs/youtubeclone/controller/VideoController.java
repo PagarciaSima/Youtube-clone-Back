@@ -76,4 +76,11 @@ public class VideoController {
 	{
 		return this.videoService.getAllComments(videoId);
 	}
+	
+	@GetMapping
+	@ResponseStatus(HttpStatus.OK)
+	public List<VideoDto> getAllVideos() {
+		return this.videoService.getAllVideos();
+	}
+
 }

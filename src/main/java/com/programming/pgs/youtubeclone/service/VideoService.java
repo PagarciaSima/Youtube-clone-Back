@@ -321,5 +321,27 @@ public class VideoService {
         return commentDto;
     }
 
+    /**
+     * Retrieves all videos from the database and maps them to {@link VideoDto} objects.
+     *
+     * <p>
+     * This method fetches all {@link Video} entities, maps each to a {@link VideoDto},
+     * and returns the resulting list.
+     * </p>
+     *
+     * @return a list of {@link VideoDto} representing all videos stored in the system
+     */
+	public List<VideoDto> getAllVideos() {
+	    LOGGER.info("Fetching all videos from the database");
+
+	    List<VideoDto> videoDtos = this.videoRepository.findAll().stream()
+	            .map(this::mapToVideoDto)
+	            .toList();
+
+	    LOGGER.debug("Found {} videos in total", videoDtos.size());
+
+	    return videoDtos;
+	}
+
 
 }

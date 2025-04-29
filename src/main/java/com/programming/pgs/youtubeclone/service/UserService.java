@@ -1,5 +1,7 @@
 package com.programming.pgs.youtubeclone.service;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -172,4 +174,27 @@ public class UserService {
                     return new IllegalArgumentException("Cannot find user with userId " + userId);
                 });
     }
+
+    /**
+     * Retrieves the video watch history for a specific user.
+     *
+     * <p>
+     * This method fetches the {@link User} by ID and returns the set of video IDs
+     * that represent the user's watch history.
+     * </p>
+     *
+     * @param userId the unique identifier of the user
+     * @return a {@link Set} of video IDs representing the user's watch history
+     * @throws IllegalArgumentException if the user with the specified ID does not exist
+     */
+    public Set<String> userHistory(String userId) {
+        LOGGER.info("Fetching video history for user ID: {}", userId);
+        
+        User user = getUserById(userId);
+        Set<String> history = user.getVideoHistory();
+        
+        LOGGER.debug("User ID: {} has {} videos in watch history", userId, history.size());
+        return history;
+    }
+
 }
