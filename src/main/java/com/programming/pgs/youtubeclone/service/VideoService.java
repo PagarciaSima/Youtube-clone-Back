@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.programming.pgs.youtubeclone.dto.CommentDto;
 import com.programming.pgs.youtubeclone.dto.UploadVideoResponse;
 import com.programming.pgs.youtubeclone.dto.VideoDto;
+import com.programming.pgs.youtubeclone.model.Comment;
 import com.programming.pgs.youtubeclone.model.Video;
 import com.programming.pgs.youtubeclone.repository.VideoRepository;
 
@@ -127,9 +129,9 @@ public class VideoService {
 	 * Retrieves detailed information about a video as a {@link VideoDto}.
 	 *
 	 * <p>
-	 * This method fetches the {@link Video} entity by its ID, increments the view count,
-	 * adds the video to the user's history, maps its fields to a {@link VideoDto}, and
-	 * returns the DTO containing the video's metadata.
+	 * This method fetches the {@link Video} entity by its ID, increments the view
+	 * count, adds the video to the user's history, maps its fields to a
+	 * {@link VideoDto}, and returns the DTO containing the video's metadata.
 	 * </p>
 	 *
 	 * @param videoId the unique identifier of the video
@@ -137,36 +139,36 @@ public class VideoService {
 	 *         description, URL, thumbnail, tags, and status
 	 * @throws IllegalArgumentException if no video is found with the specified ID
 	 */
-    public VideoDto getVideoDetails(String videoId) {
-	    LOGGER.info("Fetching video details for video ID: {}", videoId);
+	public VideoDto getVideoDetails(String videoId) {
+		LOGGER.info("Fetching video details for video ID: {}", videoId);
 
-        Video savedVideo = getVideoById(videoId);
+		Video savedVideo = getVideoById(videoId);
 
-        increaseVideoCount(savedVideo);
-        userService.addVideoToHistory(videoId);
-	    LOGGER.debug("Returning video details for video ID: {}", videoId);
+		increaseVideoCount(savedVideo);
+		userService.addVideoToHistory(videoId);
+		LOGGER.debug("Returning video details for video ID: {}", videoId);
 
-        return mapToVideoDto(savedVideo);
-    }
-
+		return mapToVideoDto(savedVideo);
+	}
 
 	/**
 	 * Increments the view count of the provided video and saves the updated video.
 	 * 
-	 * This method updates the view count of a video and persists the changes in the repository.
-	 * The view count is incremented by calling the `incrementViewCount()` method on the `Video` object.
+	 * This method updates the view count of a video and persists the changes in the
+	 * repository. The view count is incremented by calling the
+	 * `incrementViewCount()` method on the `Video` object.
 	 * 
 	 * @param savedVideo the video whose view count is to be incremented.
 	 */
 	private void increaseVideoCount(Video savedVideo) {
-	    LOGGER.info("Incrementing view count for video with ID: {}", savedVideo.getId());
-	    
-	    savedVideo.incrementViewCount();
-	    
-	    LOGGER.debug("New view count for video with ID {}: {}", savedVideo.getId(), savedVideo.getViewCount());
-	    
-	    this.videoRepository.save(savedVideo);
-	    LOGGER.info("Video with ID {} successfully updated with new view count.", savedVideo.getId());
+		LOGGER.info("Incrementing view count for video with ID: {}", savedVideo.getId());
+
+		savedVideo.incrementViewCount();
+
+		LOGGER.debug("New view count for video with ID {}: {}", savedVideo.getId(), savedVideo.getViewCount());
+
+		this.videoRepository.save(savedVideo);
+		LOGGER.info("Video with ID {} successfully updated with new view count.", savedVideo.getId());
 	}
 
 	/**
@@ -206,7 +208,8 @@ public class VideoService {
 	 * Handles the "dislike" logic for a given video.
 	 * <p>
 	 * If the user has already disliked the video, it removes the dislike.<br>
-	 * If the user had previously liked the video, it removes the like and adds a dislike.<br>
+	 * If the user had previously liked the video, it removes the like and adds a
+	 * dislike.<br>
 	 * If the user had no prior reaction, it simply adds a dislike.
 	 * </p>
 	 *
@@ -253,6 +256,35 @@ public class VideoService {
 		videoDto.setDislikeCount(videoById.getDisLikes().get());
 		videoDto.setViewCount(videoById.getViewCount().get());
 		return videoDto;
+	}
+
+	/**
+	 * Adds a new comment to a video.
+	 *
+	 * <p>
+	 * This method retrieves the video by its ID, creates a new {@link Comment} from the
+	 * provided {@link CommentDto}, adds the comment to the video's comment list,
+	 * and saves the updated video to the repository.
+	 * </p>
+	 *
+	 * @param videoId     the unique identifier of the video to which the comment is added
+	 * @param commentDto  the data transfer object containing the comment text and author ID
+	 * @throws IllegalArgumentException if no video is found with the specified ID
+	 */
+	public void addComment(String videoId, CommentDto commentDto) {
+	    LOGGER.info("Adding comment to video with ID: {}", videoId);
+	    
+	    Video video = getVideoById(videoId);
+	    
+	    Comment comment = new Comment();
+	    comment.setText(commentDto.getCommentText());
+	    comment.setAuthorId(commentDto.getAuthorId());
+	    
+	    video.addComment(comment);
+	    LOGGER.debug("Added comment by user {} to video {}", comment.getAuthorId(), videoId);
+
+	    this.videoRepository.save(video);
+	    LOGGER.info("Saved updated video with new comment to repository for video ID: {}", videoId);
 	}
 
 }

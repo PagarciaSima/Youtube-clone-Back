@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.programming.pgs.youtubeclone.dto.CommentDto;
 import com.programming.pgs.youtubeclone.dto.UploadVideoResponse;
 import com.programming.pgs.youtubeclone.dto.VideoDto;
 import com.programming.pgs.youtubeclone.service.VideoService;
@@ -59,5 +60,11 @@ public class VideoController {
 	@ResponseStatus(HttpStatus.OK)
 	public VideoDto disLikeVideo(@PathVariable String videoId) {
 		return this.videoService.disLikeVideo(videoId);
+	}
+	
+	@PostMapping("/{videoId}/comment")
+	@ResponseStatus(HttpStatus.OK)
+	public void addComment(@PathVariable String videoId, @RequestBody CommentDto commentDto) {
+		this.videoService.addComment(videoId, commentDto);
 	}
 }
