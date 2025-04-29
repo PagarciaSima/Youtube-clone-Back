@@ -1,5 +1,15 @@
-{"properties": [{
-  "name": "auth0.audience",
-  "type": "java.lang.String",
-  "description": "A description for 'auth0.audience'"
-}]}
+{
+  "properties": [
+    {
+      "name": "auth0.audience",
+      "type": "java.lang.String",
+      "description": "A description for 'auth0.audience'"
+    },
+    {
+      "name": "auth0.userinfoEndpoint",
+      "type": "java.lang.String",
+      "description": "A description for 'auth0.userinfoEndpoint'"
+    }
+
+  ]
+}
