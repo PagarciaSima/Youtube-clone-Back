@@ -127,8 +127,9 @@ public class VideoService {
 	 * Retrieves detailed information about a video as a {@link VideoDto}.
 	 *
 	 * <p>
-	 * This method fetches the {@link Video} entity by its ID, maps its fields to a
-	 * {@link VideoDto}, and returns the DTO containing the video's metadata.
+	 * This method fetches the {@link Video} entity by its ID, increments the view count,
+	 * adds the video to the user's history, maps its fields to a {@link VideoDto}, and
+	 * returns the DTO containing the video's metadata.
 	 * </p>
 	 *
 	 * @param videoId the unique identifier of the video
@@ -136,21 +137,35 @@ public class VideoService {
 	 *         description, URL, thumbnail, tags, and status
 	 * @throws IllegalArgumentException if no video is found with the specified ID
 	 */
-	public VideoDto getVideoDetails(String videoId) {
-		LOGGER.info("Fetching video details for ID: {}", videoId);
-		Video savedVideo = this.getVideoById(videoId);
+    public VideoDto getVideoDetails(String videoId) {
+	    LOGGER.info("Fetching video details for video ID: {}", videoId);
 
-		VideoDto videoDto = new VideoDto();
-		videoDto.setVideoUrl(savedVideo.getVideoUrl());
-		videoDto.setThumbnailUrl(savedVideo.getThumbnailUrl());
-		videoDto.setId(savedVideo.getId());
-		videoDto.setTitle(savedVideo.getTitle());
-		videoDto.setDescription(savedVideo.getDescription());
-		videoDto.setTags(savedVideo.getTags());
-		videoDto.setVideoStatus(savedVideo.getVideoStatus());
+        Video savedVideo = getVideoById(videoId);
 
-		LOGGER.debug("Returning details for video ID: {}", videoId);
-		return videoDto;
+        increaseVideoCount(savedVideo);
+        userService.addVideoToHistory(videoId);
+	    LOGGER.debug("Returning video details for video ID: {}", videoId);
+
+        return mapToVideoDto(savedVideo);
+    }
+
+	/**
+	 * Increments the view count of the provided video and saves the updated video.
+	 * 
+	 * This method updates the view count of a video and persists the changes in the repository.
+	 * The view count is incremented by calling the `incrementViewCount()` method on the `Video` object.
+	 * 
+	 * @param savedVideo the video whose view count is to be incremented.
+	 */
+	private void increaseVideoCount(Video savedVideo) {
+	    LOGGER.info("Incrementing view count for video with ID: {}", savedVideo.getId());
+	    
+	    savedVideo.incrementViewCount();
+	    
+	    LOGGER.debug("New view count for video with ID {}: {}", savedVideo.getId(), savedVideo.getViewCount());
+	    
+	    this.videoRepository.save(savedVideo);
+	    LOGGER.info("Video with ID {} successfully updated with new view count.", savedVideo.getId());
 	}
 
 	/**
@@ -181,7 +196,7 @@ public class VideoService {
 			userService.addToLikedVideos(videoId);
 		}
 
-		videoRepository.save(videoById);
+		this.videoRepository.save(videoById);
 
 		return mapToVideoDto(videoById);
 	}
