@@ -1,5 +1,7 @@
 package com.programming.pgs.youtubeclone.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -286,5 +288,38 @@ public class VideoService {
 	    this.videoRepository.save(video);
 	    LOGGER.info("Saved updated video with new comment to repository for video ID: {}", videoId);
 	}
+
+	/**
+	 * Retrieves all comments associated with a specific video.
+	 *
+	 * <p>
+	 * This method fetches the video by its ID, retrieves its list of comments, and maps
+	 * each {@link Comment} to a {@link CommentDto} to be returned to the client.
+	 * </p>
+	 *
+	 * @param videoId the unique identifier of the video
+	 * @return a list of {@link CommentDto} representing all comments on the video
+	 * @throws IllegalArgumentException if no video is found with the specified ID
+	 */
+    public List<CommentDto> getAllComments(String videoId) {
+        Video video = getVideoById(videoId);
+        List<Comment> commentList = video.getCommentList();
+
+        return commentList.stream().map(this::mapToCommentDto).toList();
+    }
+    
+    /**
+     * Maps a {@link Comment} entity to a {@link CommentDto}.
+     *
+     * @param comment the {@link Comment} to be mapped
+     * @return the corresponding {@link CommentDto}
+     */
+    private CommentDto mapToCommentDto(Comment comment) {
+        CommentDto commentDto = new CommentDto();
+        commentDto.setCommentText(comment.getText());
+        commentDto.setAuthorId(comment.getAuthorId());
+        return commentDto;
+    }
+
 
 }

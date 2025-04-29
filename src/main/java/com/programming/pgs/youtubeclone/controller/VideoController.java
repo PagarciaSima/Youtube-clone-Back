@@ -1,5 +1,7 @@
 package com.programming.pgs.youtubeclone.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,5 +68,12 @@ public class VideoController {
 	@ResponseStatus(HttpStatus.OK)
 	public void addComment(@PathVariable String videoId, @RequestBody CommentDto commentDto) {
 		this.videoService.addComment(videoId, commentDto);
+	}
+	
+	@GetMapping("/{videoId}/comment") 
+	@ResponseStatus(HttpStatus.OK)
+	public List<CommentDto> getAllComments(@PathVariable String videoId)
+	{
+		return this.videoService.getAllComments(videoId);
 	}
 }
