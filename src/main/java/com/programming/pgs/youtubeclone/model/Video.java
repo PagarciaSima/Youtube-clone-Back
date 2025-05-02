@@ -1,15 +1,19 @@
 package com.programming.pgs.youtubeclone.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Document(value = "Video")
 @Data
@@ -30,6 +34,10 @@ public class Video {
 	private AtomicInteger viewCount = new AtomicInteger(0);
 	private String thumbnailUrl;
 	private List<Comment> commentList = new CopyOnWriteArrayList<>();
+	@CreatedDate
+    private Instant createdAt;
+	@LastModifiedDate
+    private Instant lastModifiedAt;
 
 	public void incrementLikes() {
 		likes.incrementAndGet();

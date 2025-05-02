@@ -1,5 +1,6 @@
 package com.programming.pgs.youtubeclone.dto;
 
+import java.time.Instant;
 import java.util.Set;
 
 import com.programming.pgs.youtubeclone.model.VideoStatus;
@@ -22,4 +23,6 @@ public class VideoDto {
     private Integer likeCount;
     private Integer dislikeCount;
     private Integer viewCount;
+    private Instant createdAt;
+    private Instant lastModifiedAt;
 }
