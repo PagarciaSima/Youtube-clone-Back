@@ -5,6 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -31,16 +32,30 @@ public class UserRegistrationService {
     private final UserRepository userRepository;
 
     /**
-     * Registers a user by calling the external user info endpoint,
-     * parsing the response, mapping it to a User entity, and saving it to the database.
+     * Registers a user based on the provided OAuth token.
      *
-     * @param tokenValue the access token used to fetch user information
+     * <p>This method fetches user information using the provided token,
+     * parses it into a DTO, and checks whether a user with the same
+     * subject ("sub") already exists in the database.</p>
+     *
+     * <ul>
+     *   <li>If the user already exists, it returns their existing ID.</li>
+     *   <li>If the user does not exist, it creates a new user and returns the new ID.</li>
+     * </ul>
+     *
+     * @param tokenValue the OAuth access token used to fetch user info
+     * @return the ID of the existing or newly created user
      */
-    public void registerUser(String tokenValue) {
+    public String registerUser(String tokenValue) {
         String userInfoJson = fetchUserInfo(tokenValue);
         UserInfoDto userInfoDto = parseUserInfo(userInfoJson);
+        
+        Optional<User> userBySubject = userRepository.findBySub(userInfoDto.getSub());
+        if(userBySubject.isPresent()) {
+        	return userBySubject.get().getId();
+        }
         User user = mapToUser(userInfoDto);
-        userRepository.save(user);
+        return userRepository.save(user).getId();
     }
 
     /**
