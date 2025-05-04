@@ -50,10 +50,12 @@ public class UserRegistrationService {
         String userInfoJson = fetchUserInfo(tokenValue);
         UserInfoDto userInfoDto = parseUserInfo(userInfoJson);
         
+        // Check if user already exists by subject
         Optional<User> userBySubject = userRepository.findBySub(userInfoDto.getSub());
         if(userBySubject.isPresent()) {
         	return userBySubject.get().getId();
         }
+        
         User user = mapToUser(userInfoDto);
         return userRepository.save(user).getId();
     }

@@ -30,8 +30,7 @@ public class UserController {
 		// Requires Auth from the frontend
 		Jwt jwt = (Jwt) authentication.getPrincipal();
 		
-		this.userRegistrationService.registerUser(jwt.getTokenValue());
-		return "User Registration successfull";
+		return this.userRegistrationService.registerUser(jwt.getTokenValue());
 	}
 	
 	@PostMapping("subscribe/{userId}")
