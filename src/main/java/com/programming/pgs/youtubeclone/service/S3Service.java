@@ -9,6 +9,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -20,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class S3Service implements FileService {
 
     // Injected AmazonS3 client to interact with S3 bucket
-    private final AmazonS3Client awS3Client;
+    private final AmazonS3  awS3Client;
 
     // Name of the S3 bucket (Remove public access block"
     private final static String BUCKET_NAME = "youtubeclone-102426687139";
@@ -58,6 +59,7 @@ public class S3Service implements FileService {
         awS3Client.setObjectAcl(BUCKET_NAME, key, CannedAccessControlList.PublicRead);
 
         // Return the public URL of the uploaded file
-        return awS3Client.getResourceUrl(BUCKET_NAME, key);
+        return "https://" + BUCKET_NAME + ".s3.eu-north-1.amazonaws.com/" + key;
+
     }
 }
