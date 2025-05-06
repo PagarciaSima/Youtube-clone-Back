@@ -406,7 +406,7 @@ public class VideoService {
 	                                    .map(this::mapToVideoDto)
 	                                    .toList();
 
-	    LOGGER.info("Returning {} liked video DTOs", dislikedVideoDtos.size());
+	    LOGGER.info("Returning {} disliked video DTOs", dislikedVideoDtos.size());
 	    return dislikedVideoDtos;
 	}
 	
@@ -444,7 +444,5 @@ public class VideoService {
 	    LOGGER.info("Returning {} video DTOs from history", historyVideoDtos.size());
 	    return historyVideoDtos;
 	}
-
-
 
 }

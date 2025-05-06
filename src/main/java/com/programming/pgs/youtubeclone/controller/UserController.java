@@ -28,8 +28,7 @@ public class UserController {
 	@PostMapping("/register")
 	public String register(Authentication authentication) {
 		// Requires Auth from the frontend
-		Jwt jwt = (Jwt) authentication.getPrincipal();
-		
+		Jwt jwt = (Jwt) authentication.getPrincipal();	
 		return this.userRegistrationService.registerUser(jwt.getTokenValue());
 	}
 	
@@ -51,7 +50,6 @@ public class UserController {
 	@ResponseStatus(HttpStatus.OK)
 	public Set<String> userHistory(@PathVariable String userId) {
 		return this.userService.userHistory(userId);
-		
 	}
 
 }
