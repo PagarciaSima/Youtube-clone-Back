@@ -374,6 +374,77 @@ public class VideoService {
 	    LOGGER.info("Returning {} liked video DTOs", likedVideoDtos.size());
 	    return likedVideoDtos;
 	}
+	
+	/**
+	 * Retrieves the list of videos that the currently authenticated user has disliked.
+	 *
+	 * This method performs the following steps:
+	 * <ul>
+	 *     <li>Obtains the authenticated user from the {@code userService}.</li>
+	 *     <li>Retrieves the list of disliked video IDs associated with the user.</li>
+	 *     <li>Fetches the corresponding video entities from the {@code videoRepository} using those IDs.</li>
+	 *     <li>Maps the video entities to {@code VideoDto} objects.</li>
+	 *     <li>Returns the list of {@code VideoDto} objects representing the disliked videos.</li>
+	 * </ul>
+	 *
+	 * @return a list of {@link VideoDto} objects representing the disliked videos of the current user
+	 */
+	public List<VideoDto> getDisLikedVideos() {
+	    LOGGER.info("Fetching liked videos for the current user");
+
+	    // Get the authenticated user
+	    var currentUser = userService.getCurrentUser();
+	    var dislikedVideoIds = currentUser.getDisLikedVideos();
+	    LOGGER.debug("Disliked video IDs: {}", dislikedVideoIds);
+
+	    // Fetch the videos based on the IDs
+	    List<Video> dislikedVideos = videoRepository.findAllById(dislikedVideoIds);
+	    LOGGER.debug("Retrieved {} disliked videos from the repository", dislikedVideos.size());
+
+	    // Convert to DTOs
+	    var dislikedVideoDtos = dislikedVideos.stream()
+	                                    .map(this::mapToVideoDto)
+	                                    .toList();
+
+	    LOGGER.info("Returning {} liked video DTOs", dislikedVideoDtos.size());
+	    return dislikedVideoDtos;
+	}
+	
+	/**
+	 * Retrieves the list of videos from the viewing history of the currently authenticated user.
+	 *
+	 * This method performs the following steps:
+	 * <ul>
+	 *     <li>Obtains the authenticated user from the {@code userService}.</li>
+	 *     <li>Retrieves the list of video IDs from the user's history.</li>
+	 *     <li>Fetches the corresponding video entities from the {@code videoRepository}.</li>
+	 *     <li>Maps the video entities to {@code VideoDto} objects.</li>
+	 *     <li>Returns the list of {@code VideoDto} objects representing the history.</li>
+	 * </ul>
+	 *
+	 * @return a list of {@link VideoDto} objects representing the user's video history
+	 */
+	public List<VideoDto> getVideoHistory() {
+	    LOGGER.info("Fetching video history for the current user");
+
+	    // Get the authenticated user
+	    var currentUser = userService.getCurrentUser();
+	    var videoHistoryIds = currentUser.getVideoHistory();
+	    LOGGER.debug("History video IDs: {}", videoHistoryIds);
+
+	    // Fetch the videos based on the IDs
+	    List<Video> historyVideos = videoRepository.findAllById(videoHistoryIds);
+	    LOGGER.debug("Retrieved {} history videos from the repository", historyVideos.size());
+
+	    // Convert to DTOs
+	    List<VideoDto> historyVideoDtos = historyVideos.stream()
+	            .map(this::mapToVideoDto)
+	            .toList();
+
+	    LOGGER.info("Returning {} video DTOs from history", historyVideoDtos.size());
+	    return historyVideoDtos;
+	}
+
 
 
 }
