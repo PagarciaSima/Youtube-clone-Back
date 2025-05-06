@@ -344,6 +344,36 @@ public class VideoService {
 
 	    return videoDtos;
 	}
+	
+	/**
+	 * Retrieves a list of videos liked by the currently authenticated user.
+	 *
+	 * <p>This method obtains the current user from the user service, fetches the list
+	 * of liked video IDs, retrieves the corresponding video entities from the repository,
+	 * and converts them into DTOs to return to the client.</p>
+	 *
+	 * @return a list of {@link VideoDto} representing the liked videos of the current user
+	 */
+	public List<VideoDto> getLikedVideos() {
+	    LOGGER.info("Fetching liked videos for the current user");
+
+	    // Get the authenticated user
+	    var currentUser = userService.getCurrentUser();
+	    var likedVideoIds = currentUser.getLikedVideos();
+	    LOGGER.debug("Liked video IDs: {}", likedVideoIds);
+
+	    // Fetch the videos based on the IDs
+	    List<Video> likedVideos = videoRepository.findAllById(likedVideoIds);
+	    LOGGER.debug("Retrieved {} liked videos from the repository", likedVideos.size());
+
+	    // Convert to DTOs
+	    var likedVideoDtos = likedVideos.stream()
+	                                    .map(this::mapToVideoDto)
+	                                    .toList();
+
+	    LOGGER.info("Returning {} liked video DTOs", likedVideoDtos.size());
+	    return likedVideoDtos;
+	}
 
 
 }
