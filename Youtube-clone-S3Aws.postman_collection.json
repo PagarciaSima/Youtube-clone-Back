@@ -1,0 +1,547 @@
+{
+	"info": {
+		"_postman_id": "be59379d-4ead-49fe-bf88-e46a47aa057a",
+		"name": "Youtube-clone-S3Aws",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27783092"
+	},
+	"item": [
+		{
+			"name": "Auth0Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"client_id\":\"NuGF8Lr5SpcSB3mZHE29vw4MyhGA6Ftg\",\"client_secret\":\"-tRHapSGsMA6KA29Q5kuHfXSmW2BRQjNdOyV4BhNdIPNBaKxQA9U3JUZ8dLA1Tqm\",\"audience\":\"http://localhost:8080/\",\"grant_type\":\"client_credentials\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev-u0zrcpwkth27whmj.us.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"dev-u0zrcpwkth27whmj",
+						"us",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJ6REU1VTBhRERnYVZzSDFpdWtaUCJ9.eyJpc3MiOiJodHRwczovL2Rldi11MHpyY3B3a3RoMjd3aG1qLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9kZXYtdTB6cmNwd2t0aDI3d2htai51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1OTA0MDM3LCJleHAiOjE3NDU5OTA0MzcsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiIyVFltbjA0MFY4RnpWbDVQYVJpOEVNRWp1R3VCRnZqMCJ9.tqFBSOSeBcyMFr2NwNrvbTlKrZMCChnwhlBwhtY3dA2yPE92DSEXglC1Eq8jKJnyA9_iKcb0L-8hggdtIq7TSJF5kQupqTLQCFNFokJEl5x1jtXMNlYmb5GpF9Bl9RBlNsriHGHiWCQ1JVlgOIUT9nJytx6IRWNUM1BPzDFYSf5hSYCsgp3wr3JesxctbYFlQ38UxOPNM0xu7v1FhRxP1-ONtHpoAD1kunxNWf93isk_s6_S0fXxJdbgvoHt9oOCFXOYH-S3JNqkR5uYdYlgRJPa8gatlS4XQ0v9KLPWIOSDBD69LFOhyV-NQvjdzli_LR27RGIsck9Qo_w0OSP6UQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"client_id\":\"NuGF8Lr5SpcSB3mZHE29vw4MyhGA6Ftg\",\"client_secret\":\"-tRHapSGsMA6KA29Q5kuHfXSmW2BRQjNdOyV4BhNdIPNBaKxQA9U3JUZ8dLA1Tqm\",\"audience\":\"http://localhost:8080/\",\"grant_type\":\"client_credentials\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LikeVideoById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJ6REU1VTBhRERnYVZzSDFpdWtaUCJ9.eyJpc3MiOiJodHRwczovL2Rldi11MHpyY3B3a3RoMjd3aG1qLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9kZXYtdTB6cmNwd2t0aDI3d2htai51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1OTIzMzMyLCJleHAiOjE3NDYwMDk3MzIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiIyVFltbjA0MFY4RnpWbDVQYVJpOEVNRWp1R3VCRnZqMCJ9.rYDxJXn3Xu-YW6lTyOxfIjOA5aI5IbmG1V5aTrYwvL30g2PJAmLCTGUORariEjAK1kx17eRkFvke0FtCyu0lPNZX48VtJafgRQ0wTiiCs1in9rTrKkhFdd7c9umkdv-VKn13Gh1CokG0bx-zhe9U5C9eeLPfT0RqJFq6q-1VPTCPOZ7HUQjMjA-YnvLIg6AmmLQbwDSDV5plBE3PDxcx1SUxaqxgi12Aa1JU5aALcqrnyekj5xJSzwGJvH-SQOtE0w1oiq5_zpq7U1mJtwRM1OObA4FNlgjd-BdrrFynwJ7j3ksJDOLWT6fMN1Ry6cm8uzDURnjBT0okwWW-Tro5ng",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"client_id\":\"NuGF8Lr5SpcSB3mZHE29vw4MyhGA6Ftg\",\"client_secret\":\"-tRHapSGsMA6KA29Q5kuHfXSmW2BRQjNdOyV4BhNdIPNBaKxQA9U3JUZ8dLA1Tqm\",\"audience\":\"http://localhost:8080/\",\"grant_type\":\"client_credentials\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos/6808697377406337228cde23/like",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos",
+						"6808697377406337228cde23",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DislikeVideoById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJ6REU1VTBhRERnYVZzSDFpdWtaUCJ9.eyJpc3MiOiJodHRwczovL2Rldi11MHpyY3B3a3RoMjd3aG1qLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9kZXYtdTB6cmNwd2t0aDI3d2htai51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1OTIzMzMyLCJleHAiOjE3NDYwMDk3MzIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiIyVFltbjA0MFY4RnpWbDVQYVJpOEVNRWp1R3VCRnZqMCJ9.rYDxJXn3Xu-YW6lTyOxfIjOA5aI5IbmG1V5aTrYwvL30g2PJAmLCTGUORariEjAK1kx17eRkFvke0FtCyu0lPNZX48VtJafgRQ0wTiiCs1in9rTrKkhFdd7c9umkdv-VKn13Gh1CokG0bx-zhe9U5C9eeLPfT0RqJFq6q-1VPTCPOZ7HUQjMjA-YnvLIg6AmmLQbwDSDV5plBE3PDxcx1SUxaqxgi12Aa1JU5aALcqrnyekj5xJSzwGJvH-SQOtE0w1oiq5_zpq7U1mJtwRM1OObA4FNlgjd-BdrrFynwJ7j3ksJDOLWT6fMN1Ry6cm8uzDURnjBT0okwWW-Tro5ng",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"client_id\":\"NuGF8Lr5SpcSB3mZHE29vw4MyhGA6Ftg\",\"client_secret\":\"-tRHapSGsMA6KA29Q5kuHfXSmW2BRQjNdOyV4BhNdIPNBaKxQA9U3JUZ8dLA1Tqm\",\"audience\":\"http://localhost:8080/\",\"grant_type\":\"client_credentials\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos/68066a352dea02018b13e99c/disLike",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos",
+						"68066a352dea02018b13e99c",
+						"disLike"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Video S3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/videos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Thumbnail for a given video S3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/pablo/Downloads/planetearth.png"
+						},
+						{
+							"key": "videoId",
+							"value": "67ff9dfe9b302c772ff0982b",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos/thumbnail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos",
+						"thumbnail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Video metadata",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"67ff9dfe9b302c772ff0982b\",\r\n    \"title\": \"Planet earth\",\r\n    \"description\": \"Planet earth desc\",\r\n    \"tags\": [\"earth\", \"World\", \"Video\"],\r\n    \"videoStatus\": \"PUBLIC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllVideos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJ6REU1VTBhRERnYVZzSDFpdWtaUCJ9.eyJpc3MiOiJodHRwczovL2Rldi11MHpyY3B3a3RoMjd3aG1qLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJOdUdGOExyNVNwY1NCM21aSEUyOXZ3NE15aEdBNkZ0Z0BjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwLyIsImlhdCI6MTc0NjUxMDM2MywiZXhwIjoxNzQ2NTk2NzYzLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJOdUdGOExyNVNwY1NCM21aSEUyOXZ3NE15aEdBNkZ0ZyJ9.Ssk4YfiHLljXK0w9TDHjAOGhY9Ew6uEIftvbkiFlnLThbNE6UNkNzWy9-CteZjX8IOL616iXgXvp0Bm7atBHE1-il7w4ki1nuDYzrtVlENcZVCh6NX5vM-adhT5fphueUgodIRraPQKf3qEKLmSePpVFialp8giqe9Mu4SeNryaHLRH3FyaMAXf8cq5XT_-mmtblRSNHGGJXgX6KX5KqhCozIcWSaBaD9wo4kiO2OPzOz-LdIHKyKD2hFqRMa_bOccbdDbPZ_4Ro84z8JJkMjwY2ObILgFGx3rgrQwNLU8N1UVNZ4tCm2qa8jNht_bIxFaFEVmvL8P5DeXzWLtEs1Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImNZUEVUWHpicWxkYW9Da1o1T1BQbSJ9.eyJpc3MiOiJodHRwczovL3Byb2dyYW1taW5ndGVjaGllLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9wcm9ncmFtbWluZ3RlY2hpZS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1NTkyMjg2LCJleHAiOjE3NDU2Nzg2ODYsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiI0UnFiYm1PMVhtbFhqa3ZvUlE3MmZiVU9vcmVjMHZoWSJ9.Lg_IexXidXrqjnpy7cenobex5mpIQFkjU4Y4ANzQ0BkLUMzKTdvbNj7Lz0ipfr2bdzijl-4GJZdaNqa_qVluC7brwE_Cst2Eh6jMDnbMCu25zmM3aARpnVVNpkkGlHj58racKQdkKcF8wjqE0WMsqH0VJR6MdrON23nWS9wcFMzdzrnkE1LDlqXQSOMQNyC2GMsjeqPX8RGGEM6cCSK3_isuon3nZ3QfXnCZF4bHepGb-BAvRhb1vHH96JepK7DA3NG0-hzx4Sm4X8mkfMVE9S5fluSJ7SZKct8UC6xXkWCxeRQ-dJmp_LRLRrwMYq6ZzpoK_cG5F4E6jNwWK1YKGQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"67ff9dfe9b302c772ff0982b\",\r\n    \"title\": \"Planet earth\",\r\n    \"description\": \"Planet earth desc\",\r\n    \"tags\": [\"earth\", \"World\", \"Video\"],\r\n    \"videoStatus\": \"PUBLIC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllLikedVideos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJ6REU1VTBhRERnYVZzSDFpdWtaUCJ9.eyJpc3MiOiJodHRwczovL2Rldi11MHpyY3B3a3RoMjd3aG1qLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9kZXYtdTB6cmNwd2t0aDI3d2htai51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ2NTEwNjI5LCJleHAiOjE3NDY1OTcwMjksInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiIyVFltbjA0MFY4RnpWbDVQYVJpOEVNRWp1R3VCRnZqMCJ9.IwtufHu3fU8cEdRjSLhoDiYUpk-WWk8RC_EvKbwOiNy_uWF84dfQ25vTpJeShyKtbYWCvItVtkmj8C5wbY0PkZwGQcTpWq4xo2qX3XG4OCmOHeR6uKxbdR6KzAL9Hq85OSmFQ7UsFlhXE3STOkPK1zcprnHoKIPQNRD5a8opwGZ9ogn_4Q5gzEmi_KkOn6WknOBBVzgQd98oMu4xAdbsf46WwcQN1OdMrHrYkd_uvvCXZOv6lryU1e3BBteuORSEZ-FzEdJDe-uF-5kHom9B-W8y6xyEVt1LOaX0CAxkinteLYRi0YYldPET4v0kdldhy_iufknUbb0EMRavlOKYVw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImNZUEVUWHpicWxkYW9Da1o1T1BQbSJ9.eyJpc3MiOiJodHRwczovL3Byb2dyYW1taW5ndGVjaGllLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9wcm9ncmFtbWluZ3RlY2hpZS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1NTkyMjg2LCJleHAiOjE3NDU2Nzg2ODYsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiI0UnFiYm1PMVhtbFhqa3ZvUlE3MmZiVU9vcmVjMHZoWSJ9.Lg_IexXidXrqjnpy7cenobex5mpIQFkjU4Y4ANzQ0BkLUMzKTdvbNj7Lz0ipfr2bdzijl-4GJZdaNqa_qVluC7brwE_Cst2Eh6jMDnbMCu25zmM3aARpnVVNpkkGlHj58racKQdkKcF8wjqE0WMsqH0VJR6MdrON23nWS9wcFMzdzrnkE1LDlqXQSOMQNyC2GMsjeqPX8RGGEM6cCSK3_isuon3nZ3QfXnCZF4bHepGb-BAvRhb1vHH96JepK7DA3NG0-hzx4Sm4X8mkfMVE9S5fluSJ7SZKct8UC6xXkWCxeRQ-dJmp_LRLRrwMYq6ZzpoK_cG5F4E6jNwWK1YKGQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"67ff9dfe9b302c772ff0982b\",\r\n    \"title\": \"Planet earth\",\r\n    \"description\": \"Planet earth desc\",\r\n    \"tags\": [\"earth\", \"World\", \"Video\"],\r\n    \"videoStatus\": \"PUBLIC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos/liked",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos",
+						"liked"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllDislikedVideos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJ6REU1VTBhRERnYVZzSDFpdWtaUCJ9.eyJpc3MiOiJodHRwczovL2Rldi11MHpyY3B3a3RoMjd3aG1qLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9kZXYtdTB6cmNwd2t0aDI3d2htai51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ2NTEwNjI5LCJleHAiOjE3NDY1OTcwMjksInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiIyVFltbjA0MFY4RnpWbDVQYVJpOEVNRWp1R3VCRnZqMCJ9.IwtufHu3fU8cEdRjSLhoDiYUpk-WWk8RC_EvKbwOiNy_uWF84dfQ25vTpJeShyKtbYWCvItVtkmj8C5wbY0PkZwGQcTpWq4xo2qX3XG4OCmOHeR6uKxbdR6KzAL9Hq85OSmFQ7UsFlhXE3STOkPK1zcprnHoKIPQNRD5a8opwGZ9ogn_4Q5gzEmi_KkOn6WknOBBVzgQd98oMu4xAdbsf46WwcQN1OdMrHrYkd_uvvCXZOv6lryU1e3BBteuORSEZ-FzEdJDe-uF-5kHom9B-W8y6xyEVt1LOaX0CAxkinteLYRi0YYldPET4v0kdldhy_iufknUbb0EMRavlOKYVw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImNZUEVUWHpicWxkYW9Da1o1T1BQbSJ9.eyJpc3MiOiJodHRwczovL3Byb2dyYW1taW5ndGVjaGllLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9wcm9ncmFtbWluZ3RlY2hpZS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1NTkyMjg2LCJleHAiOjE3NDU2Nzg2ODYsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiI0UnFiYm1PMVhtbFhqa3ZvUlE3MmZiVU9vcmVjMHZoWSJ9.Lg_IexXidXrqjnpy7cenobex5mpIQFkjU4Y4ANzQ0BkLUMzKTdvbNj7Lz0ipfr2bdzijl-4GJZdaNqa_qVluC7brwE_Cst2Eh6jMDnbMCu25zmM3aARpnVVNpkkGlHj58racKQdkKcF8wjqE0WMsqH0VJR6MdrON23nWS9wcFMzdzrnkE1LDlqXQSOMQNyC2GMsjeqPX8RGGEM6cCSK3_isuon3nZ3QfXnCZF4bHepGb-BAvRhb1vHH96JepK7DA3NG0-hzx4Sm4X8mkfMVE9S5fluSJ7SZKct8UC6xXkWCxeRQ-dJmp_LRLRrwMYq6ZzpoK_cG5F4E6jNwWK1YKGQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"67ff9dfe9b302c772ff0982b\",\r\n    \"title\": \"Planet earth\",\r\n    \"description\": \"Planet earth desc\",\r\n    \"tags\": [\"earth\", \"World\", \"Video\"],\r\n    \"videoStatus\": \"PUBLIC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos/disliked",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos",
+						"disliked"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetVideoHistory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJ6REU1VTBhRERnYVZzSDFpdWtaUCJ9.eyJpc3MiOiJodHRwczovL2Rldi11MHpyY3B3a3RoMjd3aG1qLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9kZXYtdTB6cmNwd2t0aDI3d2htai51cy5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ2NTEwNjI5LCJleHAiOjE3NDY1OTcwMjksInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiIyVFltbjA0MFY4RnpWbDVQYVJpOEVNRWp1R3VCRnZqMCJ9.IwtufHu3fU8cEdRjSLhoDiYUpk-WWk8RC_EvKbwOiNy_uWF84dfQ25vTpJeShyKtbYWCvItVtkmj8C5wbY0PkZwGQcTpWq4xo2qX3XG4OCmOHeR6uKxbdR6KzAL9Hq85OSmFQ7UsFlhXE3STOkPK1zcprnHoKIPQNRD5a8opwGZ9ogn_4Q5gzEmi_KkOn6WknOBBVzgQd98oMu4xAdbsf46WwcQN1OdMrHrYkd_uvvCXZOv6lryU1e3BBteuORSEZ-FzEdJDe-uF-5kHom9B-W8y6xyEVt1LOaX0CAxkinteLYRi0YYldPET4v0kdldhy_iufknUbb0EMRavlOKYVw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImNZUEVUWHpicWxkYW9Da1o1T1BQbSJ9.eyJpc3MiOiJodHRwczovL3Byb2dyYW1taW5ndGVjaGllLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9wcm9ncmFtbWluZ3RlY2hpZS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1NTkyMjg2LCJleHAiOjE3NDU2Nzg2ODYsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiI0UnFiYm1PMVhtbFhqa3ZvUlE3MmZiVU9vcmVjMHZoWSJ9.Lg_IexXidXrqjnpy7cenobex5mpIQFkjU4Y4ANzQ0BkLUMzKTdvbNj7Lz0ipfr2bdzijl-4GJZdaNqa_qVluC7brwE_Cst2Eh6jMDnbMCu25zmM3aARpnVVNpkkGlHj58racKQdkKcF8wjqE0WMsqH0VJR6MdrON23nWS9wcFMzdzrnkE1LDlqXQSOMQNyC2GMsjeqPX8RGGEM6cCSK3_isuon3nZ3QfXnCZF4bHepGb-BAvRhb1vHH96JepK7DA3NG0-hzx4Sm4X8mkfMVE9S5fluSJ7SZKct8UC6xXkWCxeRQ-dJmp_LRLRrwMYq6ZzpoK_cG5F4E6jNwWK1YKGQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"67ff9dfe9b302c772ff0982b\",\r\n    \"title\": \"Planet earth\",\r\n    \"description\": \"Planet earth desc\",\r\n    \"tags\": [\"earth\", \"World\", \"Video\"],\r\n    \"videoStatus\": \"PUBLIC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetVideoById Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImNZUEVUWHpicWxkYW9Da1o1T1BQbSJ9.eyJpc3MiOiJodHRwczovL3Byb2dyYW1taW5ndGVjaGllLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9wcm9ncmFtbWluZ3RlY2hpZS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1NTkyMjg2LCJleHAiOjE3NDU2Nzg2ODYsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiI0UnFiYm1PMVhtbFhqa3ZvUlE3MmZiVU9vcmVjMHZoWSJ9.Lg_IexXidXrqjnpy7cenobex5mpIQFkjU4Y4ANzQ0BkLUMzKTdvbNj7Lz0ipfr2bdzijl-4GJZdaNqa_qVluC7brwE_Cst2Eh6jMDnbMCu25zmM3aARpnVVNpkkGlHj58racKQdkKcF8wjqE0WMsqH0VJR6MdrON23nWS9wcFMzdzrnkE1LDlqXQSOMQNyC2GMsjeqPX8RGGEM6cCSK3_isuon3nZ3QfXnCZF4bHepGb-BAvRhb1vHH96JepK7DA3NG0-hzx4Sm4X8mkfMVE9S5fluSJ7SZKct8UC6xXkWCxeRQ-dJmp_LRLRrwMYq6ZzpoK_cG5F4E6jNwWK1YKGQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"67ff9dfe9b302c772ff0982b\",\r\n    \"title\": \"Planet earth\",\r\n    \"description\": \"Planet earth desc\",\r\n    \"tags\": [\"earth\", \"World\", \"Video\"],\r\n    \"videoStatus\": \"PUBLIC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/videos/6808697377406337228cde23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"videos",
+						"6808697377406337228cde23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserInfo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJ6REU1VTBhRERnYVZzSDFpdWtaUCJ9.eyJpc3MiOiJodHRwczovL2Rldi11MHpyY3B3a3RoMjd3aG1qLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJOdUdGOExyNVNwY1NCM21aSEUyOXZ3NE15aEdBNkZ0Z0BjbGllbnRzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwLyIsImlhdCI6MTc0NTkwMzc4OSwiZXhwIjoxNzQ1OTkwMTg5LCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJOdUdGOExyNVNwY1NCM21aSEUyOXZ3NE15aEdBNkZ0ZyJ9.jOfHIkKkz8CC4W8L6diuSha3I8-xIL8yd8Ykk-TpXnPzVYS_yedhJVmXraUsYM0GjRXGoWWw-5v39B56WFdEwEYV_pKv7U1YmqVQzUTD93b0o0lM7Vim95oOwm7mw75GkJfQaQfpw-KVHc8HDPaZvEqj84PpVBwWPYJxPZAfFkcN1Xm_SiyLrLmOH5cNCxygPmneIZHgCSyYrwiQd3NV7t0zH3yX9BQYaVamIrWXX-J_WtS51g9ENBpcWMLyw8bC4wgc9UBgOkD9gkfxuev9czLBVSs3vC_k44eSwSAeOIVcZ-Gi7Pez8OaNX2129AhSENtBRyqvDZBpSNZp84DOKw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImNZUEVUWHpicWxkYW9Da1o1T1BQbSJ9.eyJpc3MiOiJodHRwczovL3Byb2dyYW1taW5ndGVjaGllLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwODMwMTU5Njk3MTE3OTA4NzE1NiIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAvIiwiaHR0cHM6Ly9wcm9ncmFtbWluZ3RlY2hpZS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzQ1NTkyMjg2LCJleHAiOjE3NDU2Nzg2ODYsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhenAiOiI0UnFiYm1PMVhtbFhqa3ZvUlE3MmZiVU9vcmVjMHZoWSJ9.Lg_IexXidXrqjnpy7cenobex5mpIQFkjU4Y4ANzQ0BkLUMzKTdvbNj7Lz0ipfr2bdzijl-4GJZdaNqa_qVluC7brwE_Cst2Eh6jMDnbMCu25zmM3aARpnVVNpkkGlHj58racKQdkKcF8wjqE0WMsqH0VJR6MdrON23nWS9wcFMzdzrnkE1LDlqXQSOMQNyC2GMsjeqPX8RGGEM6cCSK3_isuon3nZ3QfXnCZF4bHepGb-BAvRhb1vHH96JepK7DA3NG0-hzx4Sm4X8mkfMVE9S5fluSJ7SZKct8UC6xXkWCxeRQ-dJmp_LRLRrwMYq6ZzpoK_cG5F4E6jNwWK1YKGQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"67ff9dfe9b302c772ff0982b\",\r\n    \"title\": \"Planet earth\",\r\n    \"description\": \"Planet earth desc\",\r\n    \"tags\": [\"earth\", \"World\", \"Video\"],\r\n    \"videoStatus\": \"PUBLIC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev-u0zrcpwkth27whmj.us.auth0.com/userinfo",
+					"protocol": "https",
+					"host": [
+						"dev-u0zrcpwkth27whmj",
+						"us",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"userinfo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
