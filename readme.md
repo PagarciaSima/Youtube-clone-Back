@@ -4,6 +4,14 @@ This is a basic full-stack YouTube clone application that allows users to upload
 
 ---
 
+## Frontend Repository 🔗
+
+The frontend of the application is built with Angular and can be found at:
+
+[Frontend Repository - Angular](https://github.com/PagarciaSima/Youtube-clone-front)
+
+---
+
 ## 🛠️ Features
 
 - 🔐 Authentication with OAuth2 (Auth0)
